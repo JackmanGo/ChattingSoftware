@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="User_FriendsMapper">
+    <resultMap id="allFriend" type="List">
+		<result property="user_a" column="user_a"></result>
+	</resultMap>
+	<insert id="createFriends" useGeneratedKeys="true" keyProperty="id"
+     parameterType="Map">
+		insert into user_friends (user_a,user_b) values (#{user_a_id},#{user_b_id})
+	</insert>
+	 <select id="checkFriend"  resultType="domain.User_Friends" parameterType="Map">
+         select * from user_friends where user_a = #{user_a_id} and user_b=#{user_b_id}
+	 </select>
+	<select id="getAllMyFriend_1" resultType="String" parameterType="String">
+        select user_b  from user_friends where user_a=#{id};
+	</select>
+	<select id="getAllMyFriend_2" resultType="String" parameterType="String">
+		select user_a from user_friends where user_b=#{id};
+	</select>
+	<select id="selectUser" parameterType="String" resultType="String">
+		SELECT user_name from user WHERE user_id=#{id}
+	</select>
+</mapper>

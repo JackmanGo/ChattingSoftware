@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<!-- 1.数据源 -->
+	<!-- 2.事务控制 -->
+	
+	<!-- 配置一个开发环境，可以配置多个，在具体用时切换 -->
+	<environments default="test">
+		<environment id="test">   <!-- 测试环境 -->
+		<transactionManager type="JDBC"></transactionManager> <!-- 事务管理 JDBC/MANAGED -->
+		<!-- 顺序是先 transactionManager 然后   dataSource-->
+			<dataSource type="POOLED">
+			     <property name="driver" value="com.mysql.jdbc.Driver" />
+			     <property name="url" value="jdbc:mysql://localhost:3306/weichat?characterEncoding=utf-8" />
+				   <property name="username" value="root" />
+			    	<property name="password" value="toor" />
+			</dataSource><!-- 数据源 POOLED/UNPOOLED/JNDI -->
+		</environment>
+	</environments>
+	
+	<!-- 加载映射文件 mapper -->
+	<mappers>
+		<mapper resource="UserMapper.xml"/>
+		<mapper resource="User_FriendsMapper.xml"/>
+	</mappers>
+	
+</configuration>
