@@ -1,7 +1,6 @@
-package serviceImpl;
+package com.bigchat.serviceImpl;
 
-import daoImpl.User_Friends_Dao;
-import domain.User;
+import com.bigchat.daoImpl.UserFriendsDao;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -11,9 +10,9 @@ import java.util.List;
  * Created by wang on 16-3-25.
  */
 @Service(value = "user_Friend_Service")
-public class User_Friend_Service {
+public class UserFriendsService {
     @Resource(name = "user_Friends_Dao")
-    private User_Friends_Dao user_Friends_Dao;
+    private UserFriendsDao user_Friends_Dao;
 
     public boolean addFriend(String login_user,String other_id){
       return user_Friends_Dao.addFriend(login_user,other_id);

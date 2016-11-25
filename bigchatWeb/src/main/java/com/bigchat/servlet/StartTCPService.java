@@ -1,4 +1,4 @@
-package servlet;
+package com.bigchat.servlet;
 
 
 import javaSocketService.SocketService;

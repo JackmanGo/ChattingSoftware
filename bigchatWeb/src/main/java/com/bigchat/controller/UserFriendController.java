@@ -1,18 +1,14 @@
-package controller;
+package com.bigchat.controller;
 
-import domain.User;
-import javaBean.ClientInfos;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
+
+import com.bigchat.domain.User;
+import com.bigchat.serviceImpl.UserFriendsService;
+import com.bigchat.serviceImpl.UserService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import response.TextResponse;
-import serviceImpl.UserService;
-import serviceImpl.User_Friend_Service;
-
+import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,10 +16,10 @@ import java.util.Map;
 /**
  * Created by wang on 16-3-25.
  */
-@Controller
-public class User_Friend_Controller {
+@RestController
+public class UserFriendController {
     @Resource(name = "user_Friend_Service")
-    private User_Friend_Service user_Friend_Service;
+    private UserFriendsService user_Friend_Service;
     @Resource(name = "userService")
     private UserService userService;
 
@@ -40,7 +36,7 @@ public class User_Friend_Controller {
     @RequestMapping(value = "checkFriend")
     public Map<String,Boolean> checkFriend(HttpSession session, String others_id){
          User login_user = (User) session.getAttribute("user");
-         boolean result = user_Friend_Service.checkFriend(login_user.getUser_id(),others_id);
+         boolean result = user_Friend_Service.checkFriend(login_user.getUserId(),others_id);
          Map<String,Boolean> map = new HashMap<String, Boolean>();
          map.put("result",result);
          return map;

@@ -1,11 +1,11 @@
-package daoImpl;
+package com.bigchat.daoImpl;
 
-import domain.User;
+
+import com.bigchat.domain.User;
+import com.bigchat.utils.JdbcUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
-import utils.JdbcUtils;
 
-import javax.annotation.Resources;
 
 @Repository(value ="userDao")
 public class UserDao {
@@ -19,8 +19,8 @@ public class UserDao {
 	public boolean registerDao(String user_id, String password) {
 		SqlSession session = JdbcUtils.getConnection();
 		User user = new User();
-		user.setUser_id(user_id);
-		user.setUser_password(password);
+		user.setUserId(user_id);
+		user.setUserPassword(password);
 		int result = session.insert("UserMapper.save",user);
 		session.commit();
 		session.close();

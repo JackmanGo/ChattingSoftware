@@ -1,4 +1,4 @@
-package utils;
+package com.bigchat.utils;
 
 import org.apache.ibatis.datasource.unpooled.UnpooledDataSource;
 import org.apache.ibatis.datasource.unpooled.UnpooledDataSourceFactory;

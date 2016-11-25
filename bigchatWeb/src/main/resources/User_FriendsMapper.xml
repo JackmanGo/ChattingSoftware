@@ -10,7 +10,7 @@
      parameterType="Map">
 		insert into user_friends (user_a,user_b) values (#{user_a_id},#{user_b_id})
 	</insert>
-	 <select id="checkFriend"  resultType="domain.User_Friends" parameterType="Map">
+	 <select id="checkFriend" resultType="domain.UserFriends" parameterType="Map">
          select * from user_friends where user_a = #{user_a_id} and user_b=#{user_b_id}
 	 </select>
 	<select id="getAllMyFriend_1" resultType="String" parameterType="String">

@@ -1,7 +1,7 @@
-package serviceImpl;
+package com.bigchat.serviceImpl;
 
-import daoImpl.UserDao;
-import domain.User;
+import com.bigchat.daoImpl.UserDao;
+import com.bigchat.domain.User;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -14,7 +14,7 @@ public class UserService {
 	
 	public boolean registerService(User user){
 		
-		return userDao.registerDao(user.getUser_id(), user.getUser_password());
+		return userDao.registerDao(user.getUserId(), user.getUserPassword());
 	}
 	public boolean loginService(User user) {
 		// TODO Auto-generated method stub

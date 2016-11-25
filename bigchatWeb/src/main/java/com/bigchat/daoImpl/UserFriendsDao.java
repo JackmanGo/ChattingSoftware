@@ -1,12 +1,10 @@
-package daoImpl;
+package com.bigchat.daoImpl;
 
-import domain.User;
-import domain.User_Friends;
+import com.bigchat.domain.UserFriends;
+import com.bigchat.utils.JdbcUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
-import utils.JdbcUtils;
 
-import javax.annotation.Resources;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,14 +13,14 @@ import java.util.Map;
  * Created by wang on 16-3-24.
  */
 @Repository(value ="user_Friends_Dao")
-public class User_Friends_Dao {
+public class UserFriendsDao {
     //新增好友
     public boolean addFriend(String login_user_id,String friends_id) {
         SqlSession session = JdbcUtils.getConnection();
         Map<String, String> map = new HashMap<String, String>();
         map.put("user_a_id", login_user_id);
         map.put("user_b_id", friends_id);
-        User_Friends user_friends = session.selectOne("User_FriendsMapper.checkFriend", map);
+        UserFriends user_friends = session.selectOne("User_FriendsMapper.checkFriend", map);
         if (user_friends != null) {
             return false;
         } else {
@@ -42,7 +40,7 @@ public class User_Friends_Dao {
         Map<String,String> map = new HashMap<String, String>();
         map.put("user_a",login_user);
         map.put("user_b",others_id);
-        User_Friends  user_Friends = session.selectOne("User_FriendsMapper.checkFriend",map);
+        UserFriends user_Friends = session.selectOne("User_FriendsMapper.checkFriend",map);
         session.commit();
         session.close();
         if (user_Friends==null){
