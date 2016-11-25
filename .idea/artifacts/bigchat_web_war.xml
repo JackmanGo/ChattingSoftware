@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="bigchat_web:war">
-    <output-path>$PROJECT_DIR$/bigchat_web/target</output-path>
-    <root id="archive" name="bigchat_webservice.war">
-      <element id="artifact" artifact-name="bigchat_web:war exploded" />
-    </root>
-  </artifact>
-</component>

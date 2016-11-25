@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/bigchat.iml" filepath="$PROJECT_DIR$/bigchat.iml" />
-      <module fileurl="file://$PROJECT_DIR$/bigchat_web/bigchat_web.iml" filepath="$PROJECT_DIR$/bigchat_web/bigchat_web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Parent.iml" filepath="$PROJECT_DIR$/Parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bigchat_web/bigchat_webservice.iml" filepath="$PROJECT_DIR$/bigchat_web/bigchat_webservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/socketService/socketService.iml" filepath="$PROJECT_DIR$/socketService/socketService.iml" />
     </modules>
   </component>
