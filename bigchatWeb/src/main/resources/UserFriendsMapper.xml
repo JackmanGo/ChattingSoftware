@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UserFriendsMapper">
+    <resultMap id="allFriend" type="List">
+		<result property="userA" column="user_a"></result>
+	</resultMap>
+	<insert id="createFriends" parameterType="Map">
+		insert into userFriends (user_a,user_b) values (#{user_a_id},#{user_b_id})
+	</insert>
+	 <select id="checkFriend" resultType="com.bigchat.domain.UserFriends" parameterType="Map">
+         select * from userFriends where user_a = #{userAId} and user_b=#{userBId}
+	 </select>
+	<select id="getAllMyFriend_1" resultType="String" parameterType="String">
+        select user_b  from userFriends where user_a=#{id};
+	</select>
+	<select id="getAllMyFriend_2" resultType="String" parameterType="String">
+		select user_a from userFriends where user_b=#{id};
+	</select>
+	<select id="selectUser" parameterType="String" resultType="String">
+		SELECT user_name from user WHERE user_id=#{id}
+	</select>
+</mapper>

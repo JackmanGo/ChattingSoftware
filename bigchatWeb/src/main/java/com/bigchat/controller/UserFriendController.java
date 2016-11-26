@@ -2,12 +2,13 @@ package com.bigchat.controller;
 
 
 import com.bigchat.domain.User;
-import com.bigchat.serviceImpl.UserFriendsService;
-import com.bigchat.serviceImpl.UserService;
+import com.bigchat.serviceImpl.UserFriendsServiceImpl;
+import com.bigchat.serviceImpl.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import javax.annotation.Resource;
+
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
@@ -18,10 +19,10 @@ import java.util.Map;
  */
 @RestController
 public class UserFriendController {
-    @Resource(name = "user_Friend_Service")
-    private UserFriendsService user_Friend_Service;
-    @Resource(name = "userService")
-    private UserService userService;
+    @Autowired
+    private UserFriendsServiceImpl user_Friend_Service;
+    @Autowired
+    private UserServiceImpl userService;
 
     @RequestMapping(value = "agreeAddFriend")
     @ResponseBody

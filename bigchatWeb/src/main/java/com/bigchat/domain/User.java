@@ -5,7 +5,16 @@ public class User {
 	private String userName;
 	private String userPassword;
 	private String signature;
-	private String userIcon;
+	private String userIcon;//存放的是图片路径
+
+	public User(){
+
+	}
+
+	public User(String userId,String userPassword){
+		this.userId=userId;
+		this.userPassword=userPassword;
+	}
 
 	public String getUserId() {
 		return userId;
