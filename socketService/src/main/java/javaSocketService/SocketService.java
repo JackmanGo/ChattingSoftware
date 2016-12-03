@@ -1,48 +1,47 @@
 package javaSocketService;
 
-import java.io.ByteArrayOutputStream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class SocketService {
-static	 Map<String,Socket> all_socket = new HashMap<String,Socket>();
-	public static void startTCPService() {
-		 //定义一个集合来保持所以上线的客户端
-	   Socket socket = null;
-	   ServerSocket serviceSocket =null;
-		try {
-			//服务器端接收消息的类。定制端口号为8888
-			 serviceSocket = new ServerSocket(10000);
-			 System.out.println("服务器已经启动");
-			 while(true){
-					//获取socket。这个方法是阻塞式的
-				 System.out.println("进入阻塞......");
-					socket = serviceSocket.accept();
-					 System.out.println("阻塞结束......");
-					//一但获取连接后就开子线程来处理
-				  new LogicThread(socket,all_socket);
-			 }
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			 //释放资源
-		      try {
-		        serviceSocket.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	}
-	/*  
+    static Map<String, Socket> all_socket = new HashMap<String, Socket>();
+    private static final Logger logger = LoggerFactory.getLogger(SocketService.class);
+    public static void startTCPService() {
+        //定义一个集合来保持所以上线的客户端
+        Socket socket = null;
+        ServerSocket serviceSocket = null;
+        try {
+            //服务器端接收消息的类。定制端口号为8888
+            serviceSocket = new ServerSocket(10000);
+            logger.info("服务器已经启动");
+            while (true) {
+                //获取socket。这个方法是阻塞式的
+                logger.info("进入阻塞......");
+                socket = serviceSocket.accept();
+                logger.info("阻塞结束......");
+                //一但获取连接后就开子线程来处理
+                new LogicThread(socket, all_socket);
+            }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            //释放资源
+            try {
+                serviceSocket.close();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+    }
+    /*  
 	public static void main(String[] args) {
 
           ServerSocket serverSocket = null;
@@ -77,7 +76,7 @@ static	 Map<String,Socket> all_socket = new HashMap<String,Socket>();
 
                    //输出
 
-                   System.out.println("客户端发送内容为：" + new String(b,0,n));
+                   logger.info("客户端发送内容为：" + new String(b,0,n));
 
                    //向客户端发送反馈内容
 

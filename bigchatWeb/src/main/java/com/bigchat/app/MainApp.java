@@ -1,5 +1,6 @@
 package com.bigchat.app;
 
+import com.bigchat.listener.SystemInitializer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -30,4 +31,13 @@ public class MainApp extends WebMvcConfigurerAdapter {
     public MvcInterceptor getInterceptor() {
         return new MvcInterceptor();
     }
+
+    /**
+     * 项目启动的监听
+     **/
+    @Bean
+    public SystemInitializer startListener(){
+         return new SystemInitializer();
+     }
+
 }

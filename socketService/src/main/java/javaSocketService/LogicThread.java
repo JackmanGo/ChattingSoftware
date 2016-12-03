@@ -1,31 +1,28 @@
 package javaSocketService;
 
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.Socket;
-import java.util.Map;
-
 import com.google.gson.Gson;
-
-
 import javaBean.ClientInfos;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import response.AskForResponse;
 import response.AuthResponse;
 import response.Response;
 import response.TextResponse;
 
-import javax.annotation.Resource;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.Socket;
+import java.util.Map;
 
+;
 
 public class LogicThread extends Thread {
-
-	static Object lock = new Object();
-	static volatile  boolean flag = true;
-
-	Socket socket;
-	InputStream inputStream;
-	OutputStream outputStream;
-	Map<String,Socket> all_socket;
+	private Socket socket;
+	private InputStream inputStream;
+	private OutputStream outputStream;
+	private Map<String,Socket> all_socket;
+	private Gson gson = new Gson();
+	private static final Logger logger = LoggerFactory.getLogger(LogicThread.class);
 	public LogicThread(Socket socket,Map<String,Socket> all_socket) {
 		this.socket = socket;
 		this.all_socket = all_socket;
@@ -38,17 +35,16 @@ public class LogicThread extends Thread {
 					outputStream = socket.getOutputStream();
 					inputStream = socket.getInputStream();
 					// 读取数据
-			/*	int len = inputStream.read(buf);
-				System.out.println(new String(buf,0,len));
+		    	/*	int len = inputStream.read(buf);
+				logger.info(new String(buf,0,len));
 				// 反馈数据
 				outputStream.write("收到".getBytes());
 				*/
 					int len = 0;
-					System.out.println("进入阻塞 ........准备read");
+					logger.info("进入阻塞 ........准备read");
 					while ((len = (inputStream.read(buf))) > 0) {
 						String json = new String(buf, 0, len);
-						System.out.println(json);
-						Gson gson = new Gson();
+						logger.info(json);
 						ClientInfos clientInfos = gson.fromJson(json, ClientInfos.class);
 						String action = clientInfos.getAction();
 						String username = clientInfos.getSender();
@@ -84,18 +80,18 @@ public class LogicThread extends Thread {
                                 String content = clientInfos.getContent();
                                 if(receiver_socket!=null){
 									Response ask_forResponse = new AskForResponse(sender,receiver,content);
-									System.out.println("准备发送数据");
-									System.out.println(ask_forResponse.getData());
-									System.out.println("完成发送数据");
+									logger.info("准备发送数据");
+									logger.info(ask_forResponse.getData());
+									logger.info("完成发送数据");
 									receiver_socket.getOutputStream().write(ask_forResponse.getData().getBytes());
                                 }else {
-									System.out.println("用户未上线");
+									logger.info("用户未上线");
 								}
 							}
 						}
 						// 反馈数据
 			/*	outputStream.write("收到".getBytes());*/
-						System.out.println("阻塞结束 .........read结束.");
+						logger.info("阻塞结束 .........read结束.");
 					}
 				} catch (Exception e) {
 					e.printStackTrace();

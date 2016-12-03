@@ -26,8 +26,8 @@ public class MvcInterceptor extends HandlerInterceptorAdapter{
 
         // 获取用户token
         Method method = handlerMethod.getMethod();
-        log.debug("用户access token:{}, 访问目标:{}",System.currentTimeMillis(),
-                method.getDeclaringClass().getName() + "." + method.getName());
+        log.info("用户access token:{}, 访问类:{}，访问方法:{}",System.currentTimeMillis(),
+                method.getDeclaringClass().getName(),method.getName());
         return true;
     }
 }

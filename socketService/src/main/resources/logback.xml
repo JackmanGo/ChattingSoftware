@@ -1,0 +1,16 @@
+<configuration>
+    <!--输出console-->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!--输出格式-->
+        <encoder>
+            <pattern>%d{HH:mm:ss} %-5level [%thread] %logger{36}.%M - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!-- 日志输出规则 根据当前ROOT 级别，日志输出时，级别高于root默认的级别时 会输出 -->
+    <!-- 打印info级别日志及以上级别日志 -->
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>

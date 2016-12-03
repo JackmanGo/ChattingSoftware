@@ -15,14 +15,14 @@ public class UserFriendsServiceImpl {
     private UserFriendsDaoImpl userFriendsDao;
     private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(UserFriendsServiceImpl.class);
 
-    public boolean addFriend(String login_user,String other_id){
-         logger.debug("好友关系{}，{}",login_user,other_id);
+    public boolean addFriend(String loginUser,String otherId){
+         logger.debug("好友关系{}，{}",loginUser,otherId);
          boolean isAdd;
-         isAdd= userFriendsDao.checkFriendendIsHas(login_user,other_id);
+         isAdd= userFriendsDao.checkFriendendIsHas(loginUser,otherId);
          if(!isAdd){
-             isAdd=userFriendsDao.checkFriendendIsHas(other_id,login_user);
+             isAdd=userFriendsDao.checkFriendendIsHas(loginUser,otherId);
              if(!isAdd){
-                 return userFriendsDao.addFriend(login_user,other_id);
+                 return userFriendsDao.addFriend(loginUser,otherId);
              }
          }
          return false;

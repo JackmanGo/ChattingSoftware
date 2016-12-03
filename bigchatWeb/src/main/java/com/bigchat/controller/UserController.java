@@ -69,7 +69,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "findOtherUser")
-    public Map<String,String> findOtherUser(String user_id) {
+    public JsonResponse findOtherUser(String user_id) {
         User friend = userService.findUserById(user_id);
         Map<String, String> map = new HashMap<String, String>();
         if (friend == null) {
@@ -80,6 +80,6 @@ public class UserController {
             map.put("user_name", friend.getUserName());
             map.put("user_signature", friend.getSignature());
         }
-        return map;
+        return JsonResponse.success(map);
     }
 }
