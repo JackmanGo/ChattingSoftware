@@ -1,7 +1,7 @@
 package javaSocketService;
 
+import bean.ClientInfos;
 import com.google.gson.Gson;
-import javaBean.ClientInfos;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import response.AskForResponse;
@@ -13,8 +13,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.util.Map;
-
-;
 
 public class LogicThread extends Thread {
 	private Socket socket;

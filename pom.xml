@@ -31,6 +31,8 @@
     <modules>
         <module>./socketService</module>
         <module>./bigchatWeb</module>
+        <module>nettyService</module>
+        <module>model</module>
     </modules>
 
 

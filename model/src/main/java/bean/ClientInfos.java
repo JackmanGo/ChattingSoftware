@@ -1,4 +1,4 @@
-package javaBean;
+package bean;
 
 public class ClientInfos {
 	private String sequence;
